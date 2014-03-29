@@ -1,0 +1,552 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"b",
+				"b"
+			],
+			[
+				"display",
+				"display"
+			],
+			[
+				"webkit-flex",
+				"webkit-flex"
+			],
+			[
+				"title",
+				"titleClickAction"
+			],
+			[
+				"cell",
+				"cell"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"etf",
+				"basket_etf_basket"
+			],
+			[
+				"addPLayer",
+				"addPLayer"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"prime",
+				"primeArray"
+			],
+			[
+				"C",
+				"Courier"
+			],
+			[
+				"m",
+				"m"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "function gameManager(){\n	this.loop={\n		requestAnimFrame = (function(){\n			return  window.requestAnimationFrame       ||\n			        window.webkitRequestAnimationFrame ||\n			        window.mozRequestAnimationFrame    ||\n			    function( callback ){\n			    	window.setTimeout(callback, 1000 / 60);\n				};\n			})(),\n		gameLoop=function(){\n			if(this.inGame){\n				frame = +new Date();\n				inBetween += frame - lastFrame;\n				while(inBetween>lagTime){\n					update.all();\n					inBetween-=lagTime;\n				}\n				render.all();\n				lastFrame = frame;\n				requestAnimationFrame(gameLoop);\n			}\n		}\n	}\n}\nfunction canvasDrawer(canvasId){\n	var canvas=document.getElementById(canvasId);\n	var ctx=canvas.getContext('2d');\n	this.size=canvas;\n	this.draw=function(obj, x, y, sprite){\n		ctx.drawImage(obj.image||sprite, obj.x||x, obj.y||y)\n	}\n}\ndocument.onkeydown = function(evt){\n		switch (evt.keyCode) {\n            case 37:Player.direction=-1; Player.move(Player.direction);break;\n			case 39:Player.direction=1 ; Player.move(Player.direction);break;\n			case 38:Player.applyJump();break;\n       	}\n   	};\ndocument.getElementById('start').addEventListener('click',init)",
+			"file": "platformer-scripts.js",
+			"file_size": 5702,
+			"file_write_time": 130400631460008576,
+			"settings":
+			{
+				"buffer_size": 1145,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/games/platformer/scripts.js",
+		"/C/Users/Matei/AppData/Roaming/.minecraft/versions/1.6.2/1.6.2.jar",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/canvas/rld/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/canvas/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/unused/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/t1wc/index.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/unused/sublime _matei files.sublime-workspace",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/games/matrix-clicker/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/chunks/start.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/chunks/head.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/chunks/header.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/chunks/end.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/updater/index.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/feedback/index.php",
+		"/C/Users/Matei/Downloads/angular.min.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/games/matrix-clicker/matrix-clicker-scripts.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/games/cheese-clicker/cheese-clicker-stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/games/cheese-clicker/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/cicada/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/supportme/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/news/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/error.htaccess",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/games/snake/snake-scripts.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/tests/index.php",
+		"/C/Users/Matei/AppData/Local/Temp/Rar$DIa0.409/3e99aad7.main.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/index.htm",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/jafferau/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/jafferau/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/SO/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/SO/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/New folder/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/New folder/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/scripts.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/recreation/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/assets/scripts.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/french/index.html",
+		"/C/Users/Matei/Desktop/images/cwpdo.jpg",
+		"/C/Users/Matei/Desktop/myJs.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/cicada/assets/styles.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/cicada/assets/elements.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/main/scripts.js",
+		"/C/Users/Matei/Desktop/copot.eu_matei/cicada/assets/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/main/jquery-ui-stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/main/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/mail/index.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/bugs/index.html",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/bugs/bug-report/index.php",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/main/stylesheet.css",
+		"/C/Users/Matei/Desktop/copot.eu_matei/online/bugs/bug-report/index.html",
+		"/C/Users/Matei/Desktop/studiolegalecopot/assets/stylesheet.css",
+		"/C/Users/Matei/Desktop/studiolegalecopot/index.html",
+		"/C/Users/Matei/Desktop/coding/websites/webtest/main page webtest.sublime-workspace",
+		"/C/Users/Matei/Desktop/coding/sublime/derps.sublime-workspace",
+		"/C/Users/Matei/Desktop/coding/scripts/mix.js",
+		"/C/Users/Matei/Desktop/coding/test2.html",
+		"/C/Users/Matei/AppData/Roaming/Sublime Text 2/Packages/User/tic tac toe.html",
+		"/C/Users/Matei/Desktop/index.html",
+		"/C/Users/Matei/Desktop/derps.sublime-workspace"
+	],
+	"find":
+	{
+		"height": 54.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"current",
+			".value)",
+			"parseInt(",
+			".value",
+			"*cell.",
+			".value",
+			"max",
+			"min",
+			"ht",
+			"dth",
+			"width",
+			"\n		",
+			"		",
+			"snake.direction=",
+			"#body",
+			"FBF063",
+			"main",
+			"#openchat",
+			"#body",
+			"nav",
+			"main",
+			"nav",
+			"chat",
+			"input[type",
+			"main",
+			".$x",
+			".insert-info",
+			"t1wc",
+			"assets/",
+			">+",
+			"'",
+			"*/)",
+			"4",
+			"Mole.jump.pos",
+			"Mole.move",
+			"Mole.y",
+			"paddle1.direction",
+			"1;",
+			"/4",
+			"4",
+			"0.5",
+			"1",
+			"	",
+			"if(snake.pos[0].x===meal.x&&snake.pos[0].y===meal.y){\n					addLength();\n				}",
+			"snake.pos.length",
+			"snake.direction=",
+			"height",
+			"width",
+			".last",
+			".now",
+			"\">\n",
+			"onclick",
+			"()",
+			"onclick",
+			"()",
+			"onclick",
+			"openChat",
+			"+",
+			"'",
+			"+",
+			"\"",
+			";\n",
+			"transition",
+			"margin",
+			".sideflex",
+			"nav",
+			"</nav>",
+			"<nav>",
+			"Mido",
+			"Electrolize",
+			" style='color:#9ae3a9'",
+			" style='color:#9ae3a9;'",
+			".sideFlex",
+			"[",
+			"<p>",
+			"200",
+			"input",
+			"textarea",
+			"bps",
+			"useBps",
+			"addBits",
+			"                    ",
+			"#all",
+			"#main",
+			"#sideBar",
+			"#header",
+			";;",
+			"-webkit-flex:1",
+			"-webkit-flex-direction:row;",
+			"-webkit-flex-direction:column;",
+			"-webkit-flex-direction:row;",
+			"-webkit-flex:2",
+			"-webkit-flex:1",
+			"-webkit-flex:",
+			"display:-webkit-flex;",
+			"building",
+			"artner",
+			"h3",
+			"partner",
+			"var",
+			"()});\n",
+			"Quantity",
+			",",
+			"local",
+			"this",
+			"buy",
+			"telephone",
+			"d.down",
+			"d.up",
+			"d.right",
+			".right",
+			"snake.head.",
+			"right",
+			"cellsRown",
+			"=0",
+			",",
+			":",
+			"left",
+			"]",
+			"cells[",
+			"$savedata==1&&",
+			"\">",
+			"</a></li>",
+			"<li>",
+			"*5",
+			"10",
+			"//ctx.stroke();",
+			".value=='number'"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"()",
+			"",
+			".value)",
+			"parseInt(max",
+			"parseInt(min",
+			"ht.value",
+			"dth.value",
+			"Height",
+			"",
+			"changeSnakeDirection(",
+			"",
+			"matei",
+			"assets/chunks/",
+			">",
+			"",
+			"1/2;",
+			"",
+			"2",
+			"1/16",
+			"",
+			"snake.pos.length-1",
+			"changeSnakeDirection(",
+			"width",
+			"height",
+			"",
+			"id",
+			"",
+			"id",
+			"",
+			"id",
+			"",
+			"padding",
+			"#nav",
+			"< /div>",
+			"<div id=\"nav\">",
+			"<div id='nav'>",
+			"Helvetica, Arial",
+			"Mido",
+			"",
+			"<br>[",
+			"<br>",
+			"500",
+			"body",
+			"main",
+			"nav",
+			"header",
+			";",
+			"flex:1; -webkit-flex:1;",
+			"flex-direction:row; -webkit-flex-direction:row;",
+			"flex-direction:column; -webkit-flex-direction:column;",
+			"flex-direction:row; -webkit-flex-direction:row;",
+			"flex:2; -webkit-flex:2",
+			"flex:1; -webkit-flex:1",
+			"flex: ; -webkit-flex:",
+			"display:-webkit-flex; display:flex;",
+			"ill",
+			"h4",
+			"dbl-phone-prod",
+			"",
+			"Stats",
+			"),",
+			"parseInt(local",
+			"parseInt(",
+			"building",
+			"function(){buy",
+			"partner",
+			"computer",
+			"partner",
+			"computer",
+			"partner",
+			"computer",
+			"d.array.down",
+			"d.array.up",
+			"d.array.right",
+			"array.right",
+			"snake.head.array",
+			"down",
+			"up",
+			"left",
+			"===0",
+			";",
+			"=",
+			"down",
+			"up",
+			"",
+			"\"><li>",
+			"</li></a>",
+			"",
+			"*10",
+			"5",
+			"",
+			"!=='object'",
+			"(position+1)%",
+			"(position-1)%",
+			"!",
+			"/*!*/",
+			"!",
+			"/*!*/",
+			"if($('#'+(position )).hasClass('uncovered')){$('#'+(pos",
+			"",
+			"$('#'+",
+			"$('#'+(",
+			"$('#'+",
+			".hasClass('isBomb')",
+			".textContent",
+			").toString()).val",
+			".value===",
+			"string+=",
+			"#board",
+			"#main",
+			"$message",
+			")\" ",
+			")' ",
+			"'",
+			"value='",
+			"<input type='button'",
+			"</button>",
+			"<button onclick=\"creditsDsiplay",
+			"-webkit-flex",
+			"</div>",
+			"<div>",
+			"<span>some frigging awesome chat</span>",
+			"</span>some frigging awesome chat<span>",
+			"</span> | <span>",
+			"",
+			"a",
+			"b",
+			"j"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "platformer-scripts.js",
+					"settings":
+					{
+						"buffer_size": 1145,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								334,
+								334
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.640152407548,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

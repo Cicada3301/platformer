@@ -1,0 +1,6 @@
+ #game{
+ 	display:flex; display:-webkit-flex;
+ }
+ #game>div{
+ 	padding:10px;
+ }
