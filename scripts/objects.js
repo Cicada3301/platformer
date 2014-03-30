@@ -15,10 +15,11 @@ Vec.prototype.increment = function(obj){
 	obj.y+=this.y;
 };
 
-function Obj(gM, movable, x, y, sizeX, sizeY, weight, spriteSrc){
-    this.movable=movable;
-    if(movable){
-        this.vel=new Vec(0, 0);
+function Obj(gM, moveable, x, y, sizeX, sizeY, weight, spriteSrc){
+    this.gM=gM;
+    this.moveable=moveable;
+    if(moveable){
+        this.vel=new Vec(0, weight);
         this.acc=new Vec(0, 0);
     }
 	this.pos=new Vec(x, y);
@@ -29,34 +30,48 @@ function Obj(gM, movable, x, y, sizeX, sizeY, weight, spriteSrc){
 	};
 	this.sprite=new Image();
 	this.sprite.src=spriteSrc;
-    gM.objects.push(this);
+    this.gM.objects.push(this);
 }
 Obj.prototype.applyGravity=function(){
-    gM.physics.applyGravity(this);
+    this.gM.physics.applyGravity(this);
+};
+Obj.prototype.jump=function(){
+    if(this.jumpStats.phase<2) {
+        this.vel.y -= this.jumpStats.height;
+        ++this.jumpStats.phase;
+    }
 };
 Obj.prototype.move=function(){
-    var isColliding=false;
-    for(var i=0; i<gM.objects.length; ++i) {
-        if (gM.physics.checkCollision(this.pos, gM.objects[i])) {
-            isCollising = true;
-        }
-    }
-    if(!isColliding){
-        this.vel.update(this.acc.x, this.acc.y);
-        this.pos.update(this.vel.x, this.vel.y);
-        this.applyGravity();
-    }else{
-        this.vel.set(0, 0)
-    }
+    this.vel.update(this.acc.x, this.acc.y);
+    this.pos.update(this.vel.x, this.vel.y);
+    if(this.vel.y>10)this.vel.y=10;
+    if(this.vel.y<-10)this.vel.y=-10;
+    if(this.vel.x>10) this.vel.x=10;
+    if(this.vel.x<-10)this.vel.x=-10;
 };
 function Player(gM, x, y){
-	Obj.call(this, gM,true ,x||0, y||0, 16, 32, 3,'/matei/games/platformer/player.png');
+	Obj.call(this, gM,true ,x||0, y||0, 16, 32, 2,'/matei/games/platformer/player.png');
+    this.speed=4;
+    this.jumpStats={
+        phase:0,
+        incrementation:-1,
+        height:11
+    };
+    this.type='player';
+    this.acc.y=this.weight/9.8
 }
 Player.prototype=Object.create(Obj.prototype);
 Obj.prototype.draw=function(){
-    gM.drawer.draw(this)
+    this.gM.drawer.draw(this)
 };
 function Platform(gM, x, y, width){
-	Obj.call(this, gM, true ,x||0, y||0, width, 16, 0,'/matei/games/platformer/grass.png')
+	Obj.call(this, gM, true ,x||0, y||0, width, 16, 2,'/matei/games/platformer/grass.png');
+    this.fixed=true;
+    this.jumpStats={
+        phase:0,
+        incrementation:0,
+        height:0
+    };
+    this.type='platform';
 }
 Platform.prototype=Object.create(Obj.prototype);

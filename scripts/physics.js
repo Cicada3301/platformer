@@ -1,31 +1,29 @@
-function Physics(directions){
+function Physics(gM){
+    this.gM=gM;
 	this.objects=[];
-	this.bounding={
-		x:{
-			top:directions.top||0,
-			bottom:directions.bottom||gameManager.drawer.general.height
-		},
-		y:{
-			left:directions.left||0,
-			right:directions.right||gameManager.drawer.general.width
-		}
-	};
+	this.bounding= {
+        left: new Obj(gM, false, -100, -10, 100, this.gM.drawer.size.height+20, 0, '/matei/games/platformer/grass.png'),
+        top: new Obj(gM, false, -10, -100, this.gM.drawer.size.width+20, 100, 0, '/matei/games/platformer/grass.png'),
+        right: new Obj(gM, false, this.gM.drawer.size.width, -10, 100, this.gM.drawer.size.height+20, 0, '/matei/games/platformer/grass.png'),
+        bottom: new Obj(gM, false, -10, this.gM.drawer.size.height, this.gM.drawer.size.width+20, 100, 0, '/matei/games/platformer/grass.png')
+    };
 }
-Physics.prototype.applyGravity=function(object){
-	object.pos.y+=object.weight;
+Physics.prototype.checkCollision=function(a, b) {
+    var ax= a.pos.x;
+    var aX= ax + a.size.width;
+    var ay= a.pos.y;
+    var aY= ay + a.size.height;
+    var bx= b.pos.x;
+    var bX= bx + b.size.width;
+    var by= b.pos.y;
+    var bY= by + b.size.height;
+    return !(aX < bx || bX < ax ||
+             aY < by || bY < ay)
 };
-Physics.prototype.checkGravity=function(object,ind,ar){
-	var isInAir=true
-	ar.forEach(function(toCollide){
-		if(!(toCollide===object)){
-			if(this.checkCollision(object, toCollide)){
-				isInAir=false;
-				return
-			}
-		}
-	});
-	if(isInAir) this.applyGravity(object);
-};
-Physics.prototype.checkCollision=function(a, b){
-	return !(a.x+a.width<b.x|| a.x>b.x+b.width|| a.y+a.height<b.y|| a.y>b.y+b.height)
+Physics.prototype.checkBounding=function(obj){
+    //if(this.checkCollision(obj, this.bounding.right)||this.checkCollision(obj, this.bounding.left)) return 'sides';
+    //if(this.checkCollision(obj, this.bounding.bottom)) return 'bottom';
+    if(obj.pos.x<0||obj.pos.x+obj.size.width>this.gM.drawer.size.width) return 'sides';
+    if(obj.pos.y+obj.size.height>this.gM.drawer.size.height) return 'bottom';
+    if(obj.pos.y<0) return 'top';
 };
