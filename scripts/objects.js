@@ -30,7 +30,6 @@ function Obj(gM, moveable, x, y, sizeX, sizeY, weight, spriteSrc){
 	};
 	this.sprite=new Image();
 	this.sprite.src=spriteSrc;
-    this.gM.objects.push(this);
 }
 Obj.prototype.jump=function(){
     if(this.jumpStats.phase<2) {
@@ -70,5 +69,11 @@ function Platform(gM, x, y, width){
         height:0
     };
     this.type='platform';
+    this.width=width;
 }
 Platform.prototype=Object.create(Obj.prototype);
+Platform.prototype.draw=function() {
+    for (var i = 0; i < this.width; ++i) {
+        this.gM.drawer.drawXY(this, this.pos.x + this.size.width * i, this.pos.y);
+    }
+};
