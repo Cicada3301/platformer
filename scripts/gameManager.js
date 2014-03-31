@@ -24,7 +24,7 @@ function GameManager(){
 	this.options = new Options(1000/60, 20);
 	this.physics= new Physics(this, {top:0, bottom:this.drawer.size.height, left:0, right:this.drawer.size.width});
 	this.player = new Player(this, this.drawer.size.width/2, 0);
-	this.platform = [new Platform(this, Math.floor(Math.random()*240), 50), new Platform(this, Math.floor(Math.random()*240), 100), new Platform(this, Math.floor(Math.random()*240), 150), new Platform(this, Math.floor(Math.random()*240), 200)];
+	this.platform = [new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/4*3), new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/4*2), new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/4), new Platform(this, Math.floor(Math.random()*240), 0)];
 }
 GameManager.prototype.render=function(){
     this.drawer.draw(this.drawer.background);

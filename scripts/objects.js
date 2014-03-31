@@ -32,9 +32,6 @@ function Obj(gM, moveable, x, y, sizeX, sizeY, weight, spriteSrc){
 	this.sprite.src=spriteSrc;
     this.gM.objects.push(this);
 }
-Obj.prototype.applyGravity=function(){
-    this.gM.physics.applyGravity(this);
-};
 Obj.prototype.jump=function(){
     if(this.jumpStats.phase<2) {
         this.vel.y -= this.jumpStats.height;
@@ -65,7 +62,7 @@ Obj.prototype.draw=function(){
     this.gM.drawer.draw(this)
 };
 function Platform(gM, x, y, width){
-	Obj.call(this, gM, true ,x||0, y||0, width, 16, 2,'/matei/games/platformer/grass.png');
+	Obj.call(this, gM, true ,x||0, y||0, 16, 16, 2,'/matei/games/platformer/grass.png');
     this.fixed=true;
     this.jumpStats={
         phase:0,
