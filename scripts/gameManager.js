@@ -19,12 +19,20 @@ function Options(frames, updateMs, files){
     }
 }
 function GameManager(){
-    this.objects=[];
 	this.drawer = new CanvasDrawer('canvy');
 	this.options = new Options(1000/60, 20);
 	this.physics= new Physics(this, {top:0, bottom:this.drawer.size.height, left:0, right:this.drawer.size.width});
+    this.objects=[new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*7, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*6, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*5, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*4, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*3, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*2, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), 0, Math.floor(Math.random()*3))];
 	this.player = new Player(this, this.drawer.size.width/2, 0);
-	this.platform = [new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/4*3), new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/4*2), new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/4), new Platform(this, Math.floor(Math.random()*240), 0)];
+    this.objects.push(this.player);
 }
 GameManager.prototype.render=function(){
     this.drawer.draw(this.drawer.background);
@@ -41,8 +49,8 @@ GameManager.prototype.update=function(){
                 case 'sides':ent.vel.x*=-1; break;
                 case 'bottom':
                     if(ent.type==='platform'){
-                        this.platform.shift();
-                        this.platform.push(new Platform(this, Math.floor(Math.random()*240), 0));
+                        this.objects.splice(this.objects.indexOf(ent), 1);
+                        this.objects.push(new Platform(this, Math.floor(Math.random()*240), 0, Math.floor(Math.random()*3)+2));
                     }else if(ent.type==='player'){
                         ent.pos.y=0;
                     } break;
@@ -52,12 +60,12 @@ GameManager.prototype.update=function(){
                 var collision=this.physics.checkCollision(ent, toCollide);
                 if(toCollide===ent){isInCollision=false;
                 }else if(collision){
-                    isInCollision=true;
+                    isInCollision=toCollide;
                     toCollideN=this.objects.length;
                 }
             }
-            if(isInCollision){
-                ent.vel.set(0, ent.weight);
+            if(isInCollision&&ent.type==='player'){
+                ent.vel.y=toCollide.vel.y;
                 ent.jumpStats.phase=0;
             }
             ent.move();
@@ -80,10 +88,20 @@ GameManager.prototype.loop = function () {
 };
 GameManager.prototype.init=function(){
     this.inGame=true;
-    this.objects=[];
+    this.drawer = new CanvasDrawer('canvy');
+    this.options = new Options(1000/60, 20);
     this.physics= new Physics(this, {top:0, bottom:this.drawer.size.height, left:0, right:this.drawer.size.width});
+    this.objects=[new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*7, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*6, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*5, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*4, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*3, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*2, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8, Math.floor(Math.random()*3)),
+        new Platform(this, Math.floor(Math.random()*240), 0, Math.floor(Math.random()*3))];
     this.player = new Player(this, this.drawer.size.width/2, 0);
-    this.platform = [new Platform(this, Math.floor(Math.random()*240), 50), new Platform(this, Math.floor(Math.random()*240), 100), new Platform(this, Math.floor(Math.random()*240), 150), new Platform(this, Math.floor(Math.random()*240), 200)];
+    this.objects.push(this.player);
     this.loop();
 };
 GameManager.prototype.gameOver=function(){

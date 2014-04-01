@@ -10,8 +10,11 @@ function CanvasDrawer(canvasId){
             y:0
         }
     };
-    this.background.sprite.src='http://lorempizza.com/256/512';
+    this.background.sprite.src='/matei/games/platformer/background.jpg';
 }
 CanvasDrawer.prototype.draw=function(obj){
 	this.ctx.drawImage(obj.sprite, obj.pos.x, obj.pos.y);
+};
+CanvasDrawer.prototype.drawXY=function(obj, x, y){
+    this.ctx.drawImage(obj.sprite, x, y);
 };

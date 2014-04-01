@@ -1,12 +1,16 @@
 function Physics(gM){
     this.gM=gM;
 	this.objects=[];
-	this.bounding= {
+	/*this.bounding= {
         left: new Obj(gM, false, -100, -10, 100, this.gM.drawer.size.height+20, 0, '/matei/games/platformer/grass.png'),
         top: new Obj(gM, false, -10, -100, this.gM.drawer.size.width+20, 100, 0, '/matei/games/platformer/grass.png'),
         right: new Obj(gM, false, this.gM.drawer.size.width, -10, 100, this.gM.drawer.size.height+20, 0, '/matei/games/platformer/grass.png'),
         bottom: new Obj(gM, false, -10, this.gM.drawer.size.height, this.gM.drawer.size.width+20, 100, 0, '/matei/games/platformer/grass.png')
     };
+    this.bounding.left.type='bounding';
+    this.bounding.right.type='bounding';
+    this.bounding.top.type='bounding';
+    this.bounding.bottom.type='bounding';*/
 }
 Physics.prototype.checkCollision=function(a, b) {
     var ax= a.pos.x;
