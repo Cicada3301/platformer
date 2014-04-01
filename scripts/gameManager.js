@@ -22,8 +22,7 @@ function GameManager(){
 	this.drawer = new CanvasDrawer('canvy');
 	this.options = new Options(1000/60, 20);
 	this.physics= new Physics(this, {top:0, bottom:this.drawer.size.height, left:0, right:this.drawer.size.width});
-    this.objects=[new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height, Math.floor(Math.random()*3)),
-        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*7, Math.floor(Math.random()*3)),
+    this.objects=[new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*7, Math.floor(Math.random()*3)),
         new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*6, Math.floor(Math.random()*3)),
         new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*5, Math.floor(Math.random()*3)),
         new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*4, Math.floor(Math.random()*3)),
@@ -33,12 +32,16 @@ function GameManager(){
         new Platform(this, Math.floor(Math.random()*240), 0, Math.floor(Math.random()*3))];
 	this.player = new Player(this, this.drawer.size.width/2, 0);
     this.objects.push(this.player);
+    this.score=0;
 }
 GameManager.prototype.render=function(){
     this.drawer.draw(this.drawer.background);
     for(var currentObj=0; currentObj<this.objects.length; ++currentObj){
         this.objects[currentObj].draw();
     }
+};
+GameManager.prototype.writeScore=function(){
+    document.getElementById('score').innerHTML=this.score;
 };
 GameManager.prototype.update=function(){
     for(var currentObj=0; currentObj<this.objects.length; ++currentObj){
@@ -51,8 +54,12 @@ GameManager.prototype.update=function(){
                     if(ent.type==='platform'){
                         this.objects.splice(this.objects.indexOf(ent), 1);
                         this.objects.push(new Platform(this, Math.floor(Math.random()*240), 0, Math.floor(Math.random()*3)+2));
+                        ++this.score;
+                        this.writeScore();
                     }else if(ent.type==='player'){
-                        ent.pos.y=0;
+                        this.score='You lost width '+this.score+' points!';
+                        this.writeScore();
+                        this.gameOver();
                     } break;
             }
             for(var toCollideN=0; toCollideN<this.objects.length; ++toCollideN){
@@ -64,9 +71,11 @@ GameManager.prototype.update=function(){
                     toCollideN=this.objects.length;
                 }
             }
-            if(isInCollision&&ent.type==='player'){
-                ent.vel.y=toCollide.vel.y;
+            if(isInCollision&&ent.type==='player'&&toCollide.type==='platform'){
+                if(ent.vel.y>0) ent.vel.y=0;
                 ent.jumpStats.phase=0;
+            }else if(ent.type==='player'){
+                ent.acc.y=ent.weight/9.8/2;
             }
             ent.move();
         }
@@ -91,8 +100,7 @@ GameManager.prototype.init=function(){
     this.drawer = new CanvasDrawer('canvy');
     this.options = new Options(1000/60, 20);
     this.physics= new Physics(this, {top:0, bottom:this.drawer.size.height, left:0, right:this.drawer.size.width});
-    this.objects=[new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height, Math.floor(Math.random()*3)),
-        new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*7, Math.floor(Math.random()*3)),
+    this.objects=[new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*7, Math.floor(Math.random()*3)),
         new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*6, Math.floor(Math.random()*3)),
         new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*5, Math.floor(Math.random()*3)),
         new Platform(this, Math.floor(Math.random()*240), this.drawer.size.height/8*4, Math.floor(Math.random()*3)),
@@ -102,6 +110,7 @@ GameManager.prototype.init=function(){
         new Platform(this, Math.floor(Math.random()*240), 0, Math.floor(Math.random()*3))];
     this.player = new Player(this, this.drawer.size.width/2, 0);
     this.objects.push(this.player);
+    this.score=0;
     this.loop();
 };
 GameManager.prototype.gameOver=function(){
@@ -109,8 +118,8 @@ GameManager.prototype.gameOver=function(){
 };
 GameManager.prototype.handleKey=function(key){
     switch(key){
-        case 'left':this.player.vel.update(-this.player.speed/4, 0); break;
-        case 'right':this.player.vel.update(this.player.speed/4, 0); break;
+        case 'left':this.player.vel.update(-this.player.speed/16, 0); break;
+        case 'right':this.player.vel.update(this.player.speed/16, 0); break;
         case 'up':this.player.jump(); break;
     }
 };

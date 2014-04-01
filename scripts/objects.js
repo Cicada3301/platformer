@@ -19,12 +19,12 @@ function Obj(gM, moveable, x, y, sizeX, sizeY, weight, spriteSrc){
     this.gM=gM;
     this.moveable=moveable;
     if(moveable){
-        this.vel=new Vec(0, weight);
+        this.vel=new Vec(0, weight/4);
         this.acc=new Vec(0, 0);
         this.tempVel=new Vec(0, 0);
     }
 	this.pos=new Vec(x, y);
-    this.weight=weight;
+    this.weight=weight/4;
 	this.size={
 		width:sizeX,
 		height:sizeY
@@ -48,12 +48,12 @@ Obj.prototype.move=function(){
     this.vel.x*=0.99;
 };
 function Player(gM, x, y){
-	Obj.call(this, gM,true ,x||0, y||0, 16, 32, 2,'/matei/games/platformer/player.png');
+	Obj.call(this, gM,true ,x||0, y||0, 16, 32, 3,'/matei/games/platformer/player.png');
     this.speed=4;
     this.jumpStats={
         phase:0,
         incrementation:-1,
-        height:11
+        height:2
     };
     this.type='player';
     this.acc.y=this.weight/9.8
